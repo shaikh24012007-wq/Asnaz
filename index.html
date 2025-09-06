@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ludo – ब्राउज़र गेम</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="manifest" href="manifest.json"/>
+  <meta name="theme-color" content="#3a5cff"/>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>🎲 Ludo</h1>
+      <div class="controls">
+        <label>खिलाड़ी:
+          <select id="playerCount">
+            <option value="2" selected>2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </label>
+        <label>बॉट्स:
+          <select id="botCount">
+            <option value="0" selected>0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </label>
+        <button id="newGame">नया गेम</button>
+      </div>
+      <div class="status">
+        <span id="turnInfo">टर्न लोड हो रहा है…</span>
+        <button id="rollBtn" class="primary">डाइस रोल करें</button>
+        <span id="diceFace" aria-label="dice">—</span>
+      </div>
+    </header>
+
+    <main>
+      <canvas id="board" width="720" height="720" aria-label="Ludo board"></canvas>
+      <aside class="legend">
+        <h3>नियम (संक्षेप)</h3>
+        <ul>
+          <li>6 आने पर घर (base) से प्यादा बाहर आता है और एक और रोल मिलता है।</li>
+          <li>सेफ सेल्स (★) पर मार नहीं सकते।</li>
+          <li>अपने रंग के होम-पाथ में सिर्फ वही रंग जा सकता है।</li>
+          <li>जो 4 प्यादे होम तक पहुँचा दे, वही विजेता।</li>
+          <li>किसी सेल में एक ही टीम के कई प्यादे स्टैक होकर सेफ माने जाते हैं।</li>
+        </ul>
+      </aside>
+    </main>
+
+    <footer>
+      <small>ओपन-सोर्स डेमो • सिर्फ ब्राउज़र में चलता है • फ़ाइल सेव करें और index.html खोलें</small>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js').catch(console.error);
+    });
+  }
+  </script>
+</body>
+</html>
